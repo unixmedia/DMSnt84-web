@@ -1,0 +1,51 @@
+function hOpt(f)
+{
+   var f=$d.forms[f];
+   var el=f.elements;
+   var n;
+   for(i=0;i<el.length;i++)
+   {
+      var n=el[i].name.substring(0,5);
+      if(n=='i_15_'){
+         var n2=el['i_14_'+el[i].name.substring(5)].value;
+         if(n2==0)
+            el[i].value=zfill("0",18);
+         else if(n2!=255) 
+            el[i].value=dh(el[i].value,9);
+         else {
+            while(el[i].value.length<18)
+            {
+               el[i].value=el[i].value+'0';
+            }
+         }
+      }
+   } 
+}  
+function sOpt(f)
+{
+   var f=$d.forms[f];
+   var el=f.elements;
+   for(i=0;i<el.length;i++)
+   {
+      n=el[i].name.substring(0,5);
+      if(n=='i_15_'){
+         switch(el['i_14_'+el[i].name.substring(5)].value)
+         {
+            case '1':
+               el[i].value=hd(el[i].value,4);
+               break;
+            case '2':
+               el[i].value=hd(el[i].value,1);
+               break;
+            case '3':   
+               el[i].value=hd(el[i].value,2);
+               break;
+            case '255':
+               break;
+            default:
+               el[i].value='';
+         }
+      }
+   }
+}
+

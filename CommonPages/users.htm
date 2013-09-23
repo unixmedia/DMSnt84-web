@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<script src=/js/d.js></script>
+<script>hdr();</script>
+<div id=content>
+<h1>Auth Configuration</h1>
+<form action=users.htm method=post>
+<fieldset id=f>
+</fieldset>
+</form>
+</div>
+<script>
+c='';
+n={adm:"Admin pwd",usr:"User pwd",net:"Net key",mst:"Sys key"};
+for(k in n)
+{
+   r='';
+   for(i=1;i<3;i++){
+      if(i==2) r='rep. ';
+      c+='<div><label>'+r+n[k]+':</label><input type=password name='+k+i+' /></div>';
+   }
+}
+c+='<div><input type=submit class=sm value=Save /></div>';
+$('f').innerHTML=c;
+f=$d.forms[0];
+function v()
+{
+   for(k in n)
+   {
+      if(f[k+'1'].value!=f[k+'2'].value){
+         alert(n[k]+" doesn't match");
+         return false;
+      }
+   }
+}
+f.onsubmit=v;
+ftr();
+</script>
+

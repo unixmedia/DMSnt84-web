@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+import slimmer
+import sys, os
+
+
+def convertFile(html2jsname):
+   print 'Converting file',html2jsname 
+   f=open(html2jsname+".html2js", 'r')
+   content=f.read()
+   f.close()
+   compressed=slimmer.slimmer(content)
+   compressed.replace("\r\n", "\\n")
+   compressed.replace("\r", "\\n")
+   compressed.replace("\\","\\\\")
+   compressed.replace("'", "\\'")
+   compressed.replace("\n", "\\n'")
+   return "document.write('"+compressed+"');"
+
+
+if __name__ == "__main__" and len(sys.argv) > 1:
+   if len(sys.argv)==2 or sys.argv[2]=='nofunc':
+      jsname=sys.argv[1].replace('.html2js', '.js')
+      html2jsname=sys.argv[1].replace('.html2js', '')
+      if os.path.isfile(sys.argv[1]) and not os.path.isfile(jsname):
+         cont=convertFile(html2jsname)
+         f=open(jsname, 'w')
+         f.write(cont)
+         f.close()
+         os.unlink(sys.argv[1])
+         print 'done'
+   else:
+      jsname=sys.argv[1]
+      if not os.path.isfile(jsname):
+         f=open(jsname, 'w')
+         for fn in sys.argv[2:]:
+            if os.path.isfile(fn):
+               html2jsname=fn.replace('.html2js', '')
+               funcname=os.path.basename(html2jsname)
+               cont=convertFile(html2jsname)
+               f.write('function '+funcname+'() {'+cont+"}\n")
+               os.unlink(fn)
+         f.close()
+         print 'done'
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<script src=/js/d.js></script>
+<script>hdr();</script>
+<div id=content>
+<h1>Network Conf</h1>
+<form method=post action=/netcfg.htm name=config>
+<fieldset>
+<div><label>HW addr:</label>
+<input type=text name=mac disabled /></div>
+<div><label>Hostname:</label>
+<input type=text name=host disabled /></div>
+<div>&nbsp;</div>
+<div><label>IP addr:</label>
+<td><input type=text name=ip disabled /></div>
+<div><label>Gateway:</label>
+<td><input type=text name=gw disabled /></div>
+<div><label>Subnet Mask:</label>
+<td><input type=text name=sub disabled /></div>
+<div><label>Web Port:</label>
+<td><input type=text name=port disabled /></div>
+<div><input type=submit class=sm value=Save name=save disabled /></div>
+</fieldset>
+</form>
+</div>
+<script>
+function cBox() {
+	e=$d.forms.config;
+	e.ip.disabled=false;
+	e.gw.disabled=false;
+	e.sub.disabled=false;
+}
+
+function aFirstCB(xDt)
+{
+   if(xDt)
+   {
+      e=$d.forms.config;
+      e.mac.value=getX(xDt,'cfg_mac');
+      e.host.value=getX(xDt,'cfg_hostname');
+      e.ip.value=getX(xDt,'cfg_ip');
+      e.gw.value=getX(xDt,'cfg_gw');
+      e.sub.value=getX(xDt,'cfg_subnet');
+      e.port.value=getX(xDt, 'wport');
+      cBox();
+      e.mac.disabled=false;
+      e.host.disabled=false;
+      e.port.disabled=false;
+      e.save.disabled=false;
+   }
+}
+ftr();
+</script>

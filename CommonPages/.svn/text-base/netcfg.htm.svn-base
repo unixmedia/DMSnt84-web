@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<script src=/js/d.js></script>
+<script>hdr();</script>
+<div id=content>
+<h1>Network Conf</h1>
+<form method=post action=/netcfg.htm name=config>
+<fieldset>
+<div><label>HW addr:</label>
+<input type=text name=mac disabled /></div>
+<div><label>Hostname:</label>
+<input type=text name=host disabled /></div>
+<div>&nbsp;</div>
+<div>
+<input type=checkbox class=sm name=dhcp value=1 onclick="cBox()" disabled /> Use DHCP</div>
+<div>
+<input type=checkbox class=sm name=ntpe value=1 disabled /> Use SNTP</div>
+<div><label>IP addr:</label>
+<td><input type=text name=ip disabled /></div>
+<div><label>Gateway:</label>
+<td><input type=text name=gw disabled /></div>
+<div><label>Subnet Mask:</label>
+<td><input type=text name=sub disabled /></div>
+<div><label>DNS1:</label>
+<td><input type=text name=dns1 disabled /></div>
+<div><label>DNS2:</label>
+<input type=text name=dns2 disabled/></div>
+<div><label>SNTP:</label>
+<input type=text name=sntp disabled/></div>
+<div><label>Web Port:</label>
+<input type=text name=port disabled/></div>
+<div><input type=submit class=sm value=Save name=save disabled /></div>
+</fieldset>
+</form>
+</div>
+<script>
+function cBox() {
+	e=$d.forms.config;
+   st1=e.dhcp.checked;
+   st=0;
+   if(st1){st=st1;}
+	e.ip.disabled=st;
+	e.gw.disabled=st;
+	e.sub.disabled=st;
+	e.dns1.disabled=st;
+   e.dns2.disabled=st;
+}
+
+function aFirstCB(xDt)
+{
+   if(xDt)
+   {
+      e=$d.forms.config;
+      if(getX(xDt,'cfg_dhcpchecked')){e.dhcp.checked=1;}
+      if(getX(xDt,'cfg_ntpe')){e.ntpe.checked=1;}
+      e.mac.value=getX(xDt,'cfg_mac');
+      e.host.value=getX(xDt,'cfg_hostname');
+      e.ip.value=getX(xDt,'cfg_ip');
+      e.gw.value=getX(xDt,'cfg_gw');
+      e.sub.value=getX(xDt,'cfg_subnet');
+      e.dns1.value=getX(xDt,'cfg_dns1');
+      e.dns2.value=getX(xDt,'cfg_dns2');
+      e.sntp.value=getX(xDt,'cfg_sntp');
+      e.port.value=getX(xDt,'wport');
+      cBox();
+      e.mac.disabled=0;
+      e.host.disabled=0;
+      e.dhcp.disabled=0;
+      e.sntp.disabled=0;
+      e.save.disabled=0;
+      e.ntpe.disabled=0;
+      e.port.disabled=0;
+   }
+}
+ftr();
+</script>

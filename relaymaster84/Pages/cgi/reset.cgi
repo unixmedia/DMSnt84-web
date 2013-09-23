@@ -1,0 +1,1 @@
+../../../CommonPages/cgi/reset.cgi

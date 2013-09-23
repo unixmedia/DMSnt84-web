@@ -1,0 +1,47 @@
+#!/usr/bin/env python
+#
+# Microchip MCC C18 Compiler Wrapper
+# Copyright (C) John Dong, Adams Robotics Team
+# Licensed under the terms of the General Public License
+
+import os
+import sys
+import subprocess
+import re
+DEBUG=False
+VERSION="0.1"
+
+def do_headers():
+    print "\tVersion "+VERSION
+    
+def dbgprint(msg):
+	if DEBUG:
+		sys.stderr.write("DEBUG:"+msg)
+def list2list(list):
+	tmp=""
+	for t in list:
+		tmp+=t+" "
+	return tmp
+
+## Simple wrapper for the mp2cod executable
+do_headers()
+compile_success=True
+WINE_EXEC_PATH="mono"
+
+mp2cod_EXEC_COMMAND=WINE_EXEC_PATH+" "+os.path.dirname(sys.argv[0])+"/MPFS2.exe"
+
+dbgprint("Using "+mp2cod_EXEC_COMMAND+" "+list2list(sys.argv[1:])+" to launch mpfs2\n")
+pipes=subprocess.Popen([mp2cod_EXEC_COMMAND+" "+list2list(sys.argv[1:])], shell=True, stdout=subprocess.PIPE, close_fds=True)
+
+error_regex=re.compile('.*\\:Error.*')
+
+while True:
+	t=pipes.stdout.readline()
+	print t
+	if error_regex.match(t)!=None:
+		compile_success=False
+	if t=="":
+		break
+        
+if not compile_success: 
+    raise Exception,"Launch FAILED"

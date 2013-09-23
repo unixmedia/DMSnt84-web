@@ -1,0 +1,1 @@
+../../../CommonPages/cgi/reboot.cgi

@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<script type="text/javascript" src="/js/hdr.js"></script>
+<div id="content">
+<div id="status">
+   <div id="loading" style="display:none">Error:<br />Connection to board was lost.</div>
+   <div id="display">
+      <div>
+         <span style="float:right;font-size:9px;font-weight:normal;padding-top:8px;text-indent:0px">(click to toggle)</span>
+         <p>RELAYS:<br /><span class="relays">
+         <a id="relay1" onclick="newAJAXCommand('/cgi/relays.cgi?relay=1');">1</a>
+         <a id="relay2" onclick="newAJAXCommand('/cgi/relays.cgi?relay=2');">2</a>
+         <a id="relay3" onclick="newAJAXCommand('/cgi/relays.cgi?relay=3');">3</a>
+         <a id="relay4" onclick="newAJAXCommand('/cgi/relays.cgi?relay=4');">4</a>
+         <a id="relay5" onclick="newAJAXCommand('/cgi/relays.cgi?relay=5');">5</a>
+         <a id="relay6" onclick="newAJAXCommand('/cgi/relays.cgi?relay=6');">6</a>
+         <a id="relay7" onclick="newAJAXCommand('/cgi/relays.cgi?relay=7');">7</a>
+         <a id="relay8" onclick="newAJAXCommand('/cgi/relays.cgi?relay=8');">8</a>
+         <a id="relay9" onclick="newAJAXCommand('/cgi/relays.cgi?relay=9');">9</a>
+         <a id="relay10" onclick="newAJAXCommand('/cgi/relays.cgi?relay=10');">10</a>
+         <a id="relay11" onclick="newAJAXCommand('/cgi/relays.cgi?relay=11');">11</a>
+         <a id="relay12" onclick="newAJAXCommand('/cgi/relays.cgi?relay=12');">12</a>
+         </span></p>
+         <p>INPUTS:<br />
+         <span id="input1">1</span> &nbsp;
+         <span id="input2">2</span> &nbsp;
+         <span id="input3">3</span> &nbsp;
+         <span id="input4">4</span> &nbsp;
+         <span id="input5">5</span> &nbsp;
+         <span id="input6">6</span> &nbsp;
+         <span id="input7">7</span> &nbsp;
+         <span id="input8">8</span> &nbsp;
+         <span id="input9">9</span> &nbsp;
+         <span id="input10">10</span> &nbsp;
+         <span id="input11">11</span> &nbsp;
+         <span id="input12">12</span> 
+         </p>
+      </div>
+      <div id="exprel" style="display:none">
+      <p> SLAVE RELAYS:<br /><span class="relays">
+         <a id="relay13" onclick="newAJAXCommand('/cgi/relays.cgi?relay=13');">13</a>
+         <a id="relay14" onclick="newAJAXCommand('/cgi/relays.cgi?relay=14');">14</a>
+         <a id="relay15" onclick="newAJAXCommand('/cgi/relays.cgi?relay=15');">15</a>
+         <a id="relay16" onclick="newAJAXCommand('/cgi/relays.cgi?relay=16');">16</a>
+         <a id="relay17" onclick="newAJAXCommand('/cgi/relays.cgi?relay=17');">17</a>
+         <a id="relay18" onclick="newAJAXCommand('/cgi/relays.cgi?relay=18');">18</a>
+         <a id="relay19" onclick="newAJAXCommand('/cgi/relays.cgi?relay=19');">19</a>
+         <a id="relay20" onclick="newAJAXCommand('/cgi/relays.cgi?relay=20');">20</a>
+         <a id="relay21" onclick="newAJAXCommand('/cgi/relays.cgi?relay=21');">21</a>
+         <a id="relay22" onclick="newAJAXCommand('/cgi/relays.cgi?relay=22');">22</a>
+         <a id="relay23" onclick="newAJAXCommand('/cgi/relays.cgi?relay=23');">23</a>
+         <a id="relay24" onclick="newAJAXCommand('/cgi/relays.cgi?relay=24');">24</a>
+      </span></p>
+         <p>SLAVE INPUTS:<br />
+         <span id="input13">13</span> &nbsp;
+         <span id="input14">14</span> &nbsp;
+         <span id="input15">15</span> &nbsp;
+         <span id="input16">16</span> &nbsp;
+         <span id="input17">17</span> &nbsp;
+         <span id="input18">18</span> &nbsp;
+         <span id="input19">19</span> &nbsp;
+         <span id="input20">20</span> &nbsp;
+         <span id="input21">21</span> &nbsp;
+         <span id="input22">22</span> &nbsp;
+         <span id="input23">23</span> &nbsp;
+         <span id="input24">24</span>
+         </p>
+      </div>
+   </div>
+</div>
+<script type="text/javascript">
+<!--
+function ajaxLoopCBack(xmlData) {
+   if(!xmlData)
+   {
+      document.getElementById('display').style.display = 'none';
+      document.getElementById('loading').style.display = 'inline';
+      return;
+   }
+   document.getElementById('loading').style.display = 'none';
+   document.getElementById('display').style.display = 'inline';
+   for(i = 1; i < 25; i++) {
+      if(getXMLValue(xmlData, 'relay'+i) == '1')
+      {
+         document.getElementById('relay' + i).style.color = '#090';
+      }
+      else
+      {
+         document.getElementById('relay' + i).style.color = '#ddd';
+      }
+   }
+   for(i = 1; i < 25; i++) {
+      if(getXMLValue(xmlData, 'input'+i) == 'up')
+      {
+         document.getElementById('input' + i).style.color = '#3366ff';
+      }
+      else
+      {
+         document.getElementById('input' + i).style.color = '#e00000';
+      }
+   }
+}
+
+function ajaxFirstCBack(xmlData)
+{
+   document.getElementById('exprel').style.display=getXMLValue(xmlData, 'expansion_relays');
+}
+//-->
+</script>
+</div>
+<script type="text/javascript" src="/js/ftr.js"></script>
