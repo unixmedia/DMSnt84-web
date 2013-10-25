@@ -22,7 +22,7 @@ You will need following dependencies on a Linux machine:
 You MUST NOT change anything in ajax.xml, ioconf.xml and all *.cgi files, or they will
 not work with the firmware.
 
-The git branches will match the same versions as the firmware.
+The git branche will match the same versions as the firmware, or use master if no other branches are on git.
 
 Be carefull about the size of your web pages: the EEPROM space on the DMSnt84 board is limited, the resulting binary file,
 after compression, can't be more than 28KB.
