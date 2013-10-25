@@ -1,7 +1,7 @@
 Domotika IOBoards-web
 ===========
 
-Web GUI for DMSnt84 I/O Boards
+Web GUI for Domotika I/O Boards
 
 To compile a new webgui execute the script "Convert_Webpages_To_Mpfs2.sh" with the name
 of the firmware that match the web gui you are upgrading and the language
