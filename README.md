@@ -27,8 +27,8 @@ The git branche will match the same versions as the firmware, or use master if n
 Be carefull about the size of your web pages: the EEPROM space on the DMSnt84 board is limited, the resulting binary file,
 after compression, can't be more than 28KB.
 
-After compilation, you will find a file called MPFS2-<lang>.bin in the <firmware_name> directory. Upload this file on the board 
-by point your browser to http://<ip_of_your_board>/uploadweb
+After compilation, you will find a file called MPFS2-[lang].bin in the [firmware_name] directory. Upload this file on the board 
+by point your browser to http://[ip_of_your_board]/uploadweb
 
 
 Translations can be changed by editing dmtranslation.py file.
