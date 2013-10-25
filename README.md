@@ -32,3 +32,5 @@ by point your browser to http://[ip_of_your_board]/uploadweb
 
 
 Translations can be changed by editing dmtranslation.py file.
+
+![piwik tracking](https://webstats.unixmedia.it/piwik.php?idsite=2&rec=1&action_name=IOBoardsWeb)
